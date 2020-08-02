@@ -525,13 +525,6 @@ var pets = [
     "evolved": false
   },
   {
-    "name": "Black Heart Rabbit",
-    "id": "affection-normal-black-heart-rabbit",
-    "image": "pets/affection/normal/black-heart-rabbit.png",
-    "type": "affection",
-    "evolved": false
-  },
-  {
     "name": "Red Heart Rabbit Evolved",
     "id": "affection-evolved-red-heart-rabbit-evolved",
     "image": "pets/affection/evolved/red-heart-rabbit-evolved.png",
