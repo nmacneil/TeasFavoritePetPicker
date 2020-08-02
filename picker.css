@@ -7,11 +7,15 @@ body {
     background: #eab490 url(bg.jpg);
     font-family: 'Roboto', sans-serif;
     color: #b98c75;
-    padding-top: 20px;
-    padding-right: 20px;
-    min-height: 100%;
-    padding-bottom: 0;
-    padding-left: 20px;
+    min-height: 100vh;
+}
+
+body,html {
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
 }
 
 a {
@@ -35,7 +39,7 @@ p {
     border-top-right-radius: 120px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    margin: 0 0 24px;
+
     padding: 12px 47px;
 }
 a:link, a:visited {
