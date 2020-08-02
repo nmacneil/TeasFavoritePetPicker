@@ -72,9 +72,9 @@ var myPicker = new picker.Picker({
         var isEvolved = item.evolved
         var isNormal = !item.evolved
         console.log(isEvolved)
-        return isType &&
+        return isType && (
             (settings.showEvolved ? isEvolved : false) ||
-            (settings.showNormal ? isNormal : false)
+            (settings.showNormal ? isNormal : false))
     }
 });
 
