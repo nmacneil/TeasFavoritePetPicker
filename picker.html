@@ -219,6 +219,25 @@ button.disabled:hover {
 <p id="buttons"><button id="pick">Pick</button> <button id="pass">Pass</button> <button id="undo">Undo</button> <button id="redo">Redo</button></p>
 </div>
 
+<div>
+    <h2>Filters</h2>
+    <p>Include roles:
+        <label><input type="checkbox" name="types" class="types" value="louise-hill"> Louise Hill</label>
+        <label><input type="checkbox" name="types" class="types" value="three's-forest"> Three's Forest</label>
+        <label><input type="checkbox" name="types" class="types" value="silvie's-mine"> Silvie's Mine</label>
+        <label><input type="checkbox" name="types" class="types" value="aviar-cove"> Aviar Cove</label>
+        <label><input type="checkbox" name="types" class="types" value="vaer-reef"> Vaer Reef</label>
+        <label><input type="checkbox" name="types" class="types" value="random-alchemy"> Random Alchemy</label>
+        <label><input type="checkbox" name="types" class="types" value="fantastical-alchemy"> Fantastical Alchemy</label>
+        <label><input type="checkbox" name="types" class="types" value="legendary-alchemy"> Legendary Alchemy</label>
+        <label><input type="checkbox" name="types" class="types" value="affection"> Affection</label>
+        <label><input type="checkbox" name="types" class="types" value="seasonal"> Seasonal</label>
+        <label><input type="checkbox" name="types" class="types" value="retired"> Retired</label>
+    </p>
+
+    <p><label>Evolved only? <input type="checkbox" id="evolved-only"></label></p>
+    <p><label>Normal only? <input type="checkbox" id="normal-only"></label></p>
+</div>
 <div id="secondary">
 <h2>Found favorites</h2>
 
@@ -237,7 +256,22 @@ button.disabled:hover {
 var items = pets;
 
 var myPicker = new picker.Picker({
-    items: items
+    items: items,
+    localStorageKey: 'picker-state',
+    defaultSettings: {
+        types: ["louise-hill", "three's-forest", "silvie's-mine", "aviar-cove", "vaer-reef", "random-alchemy", "fantastical-alchemy", "legendary-alchemy", "affection", "seasonal", "retired"],
+        evolvedOnly: false,
+        normalOnly: false,
+    },
+    shouldIncludeItem: function(item, settings) {
+        var isType = settings.types.indexOf(item.type) !== -1
+        var isNormal = !item.evolved
+        var isEvolved = item.evolved
+
+        return isType &&
+            (settings.evolvedOnly ? isEvolved : true) &&
+            (settings.normalOnly ? isNormal : true)
+    }
 });
 
 var pickerUI = new PickerUI(myPicker, {
@@ -247,8 +281,13 @@ var pickerUI = new PickerUI(myPicker, {
         undo: "#undo",
         redo: "#redo",
         evaluating: "#evaluating",
-        favorites: "#favorites"
-    }
+        favorites: "#favorites",
+        settings: {
+            types: '.types',
+            evolvedOnly: '#evolved-only',
+            normalOnly: '#normal-only',
+        }
+    },
 });
 
 pickerUI.initialize();

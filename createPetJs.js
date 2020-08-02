@@ -27,8 +27,8 @@ async function* ls(path) {
                         .join(' '),
                     id: `${petDir.name}-${state}-${variation}`,
                     image: `${petPath}/${variationDir.name}`,
+                    type: petDir.name,
                     evolved: state === 'evolved',
-                    normal: state === 'normal',
                 };
                 pets.push(pet);
             }
