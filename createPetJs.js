@@ -35,5 +35,5 @@ async function* ls(path) {
         }
     }
 
-    await fs.writeFile('pets.js', `var pets = ${JSON.stringify(pets, null, 2)}`);
+    console.log(`var pets = ${JSON.stringify(pets, null, 2)}`);
 })();

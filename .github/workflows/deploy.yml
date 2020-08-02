@@ -9,20 +9,13 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Cleanup 🧹
-        run: |
-          rm README.md LICENSE
-          mv picker.html index.html
-
       - name: Build 🔧
         run: |
-          node createPetJs.js
-          ls
-          cat pets.js
+          sh ./build.sh
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: .
+          FOLDER: build/
