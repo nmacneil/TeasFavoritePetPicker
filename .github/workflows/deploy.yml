@@ -9,6 +9,11 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Cleanup 🧹
+        run: |
+          rm README.md && LICENSE
+          mv picker.html index.html
+
       - name: Build 🔧
         run: |
           node createPetJs.js
