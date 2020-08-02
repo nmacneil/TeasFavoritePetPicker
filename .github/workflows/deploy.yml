@@ -11,7 +11,7 @@ jobs:
 
       - name: Cleanup 🧹
         run: |
-          rm README.md && LICENSE
+          rm README.md LICENSE
           mv picker.html index.html
 
       - name: Build 🔧
