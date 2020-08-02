@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="initial-scale=1.0">
-    <title>Picker</title>
+    <title>Tea #20's Favorite Pet Picker</title>
     <link rel="stylesheet" type="text/css" href="picker.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
 </head>
@@ -37,9 +37,8 @@
                 <label><input type="checkbox" name="types" class="types" value="seasonal"> Seasonal</label>
                 <label><input type="checkbox" name="types" class="types" value="retired"> Retired</label>
             </p>
-        
-            <p><label>Evolved only? <input type="checkbox" id="evolved-only"></label></p>
-            <p><label>Normal only? <input type="checkbox" id="normal-only"></label></p>
+            <p><label>Show Normal Forms<input type="checkbox" id="show-normal"></label></p>
+            <p><label>Show Evolved Forms<input type="checkbox" id="show-evolved"></label></p>
         </div>
         <div id="secondary">
             <h2>Found favorites</h2>
@@ -65,17 +64,17 @@ var myPicker = new picker.Picker({
     localStorageKey: 'picker-state',
     defaultSettings: {
         types: ["louise-hill", "three's-forest", "silvie's-mine", "aviar-cove", "vaer-reef", "random-alchemy", "fantastical-alchemy", "legendary-alchemy", "affection", "seasonal", "retired"],
-        evolvedOnly: false,
-        normalOnly: false,
+        showEvolved: true,
+        showNormal: true,
     },
     shouldIncludeItem: function(item, settings) {
         var isType = settings.types.indexOf(item.type) !== -1
-        var isNormal = !item.evolved
         var isEvolved = item.evolved
-
+        var isNormal = !item.evolved
+        console.log(isEvolved)
         return isType &&
-            (settings.evolvedOnly ? isEvolved : true) &&
-            (settings.normalOnly ? isNormal : true)
+            (settings.showEvolved ? isEvolved : false) ||
+            (settings.showNormal ? isNormal : false)
     }
 });
 
@@ -89,8 +88,8 @@ var pickerUI = new PickerUI(myPicker, {
         favorites: "#favorites",
         settings: {
             types: '.types',
-            evolvedOnly: '#evolved-only',
-            normalOnly: '#normal-only',
+            showEvolved: '#show-evolved',
+            showNormal: '#show-normal',
         }
     },
 });
