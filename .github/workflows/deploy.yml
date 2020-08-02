@@ -17,6 +17,8 @@ jobs:
       - name: Build 🔧
         run: |
           node createPetJs.js
+          ls
+          cat pets.js
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
